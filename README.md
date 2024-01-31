@@ -1,2 +1,2 @@
-# sun-system
-Python Sun System Simulation
+# Python Sun Sytem Simulation
+
