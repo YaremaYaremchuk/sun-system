@@ -3,7 +3,7 @@
 
 
 
-##Usage
+## Usage
 ```
 pip3 install pygame
 sudo apt install sox
