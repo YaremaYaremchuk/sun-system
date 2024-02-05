@@ -8,7 +8,7 @@ pygame.init()
 
 Width = 1280
 Height = 720
-
+score = 0
 
 win = pygame.display.set_mode((Width,Height))
 
@@ -21,7 +21,7 @@ G = 6
 FPS = 60
 
 
-Planetlist = ["earth.png","saturn.png","strashno.png","jupiter.png"]
+Planetlist = ["earth.png","saturn.png","strashno.png","jupiter.png", "Zair.png", "jyle.png", "strange.png", "kasheek.png"]
 Star_Radius = 120
 Planet_Radius = 30
 VerLimit = 90
@@ -32,6 +32,7 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 Gtext = font.render('G-force', True, line_color)
 Startext = font.render('Star Mass', True, line_color)
 Planettext = font.render('Planet Mass', True, line_color)
+Score = pygame.font.Font(None, 36)
 
 Backgr = pygame.transform.scale(pygame.image.load("star.jpeg"),(Width,Height))
 Star = pygame.transform.scale(pygame.image.load("star.png"),(Star_Radius*2,Star_Radius*2))
@@ -119,7 +120,7 @@ class Slider:
 
     def draw(self):
         pygame.draw.rect(win, "white", self.containter)
-        pygame.draw.rect(win, "black", self.button)
+        pygame.draw.rect(win, "orange", self.button)
 
 def planet_create(location, mouse):
     t_x,t_y=location
@@ -143,6 +144,7 @@ if __name__=="__main__":
     GRect.center = ((Width//2)+320, Height-90)
     PlanRect = Planettext.get_rect()
     PlanRect.center = ((Width//2), Height-90)
+    
     planets = []
     start_plan_pos = None
     star = Stars(Width//2, Height//2, Star_mass)
@@ -187,6 +189,9 @@ if __name__=="__main__":
                     collide = True
             if cleanup or destroy or collide:
                 planets.remove(obj)
+                score=0
+            else:
+                score+=1
         
 
 
@@ -196,6 +201,8 @@ if __name__=="__main__":
         Star_mass = menu.sliders[0].get_value()
         Planet_mass = menu.sliders[1].get_value()
         G = menu.sliders[2].get_value()
+        score_text = Score.render(f'Score: {score}', True, (255, 255, 255))
+        win.blit(score_text, (10, 10))
         pygame.display.update()
         
     pygame.quit()
