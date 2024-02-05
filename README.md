@@ -14,3 +14,6 @@ python3 pitonchik.py
 ```
 
 
+### Update 2.0
+
+Added Scoreboard and added more planets
